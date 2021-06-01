@@ -2,6 +2,11 @@ from ledger import app
 from flask import render_template, redirect, url_for
 
 
+@app.route('/')
+def landing_page():
+    return render_template('landing_page.html')
+
+
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
