@@ -25,33 +25,43 @@
         <div class="col-md-6 col-sm-12">
             <div class="register-form">
                 <form method="POST">
+
+                    {{ form.hidden_tag() }}
+
                     <div class="form-group">
-                        <label for="business_name">Business Name</label>
-                        <input type="text" class="form-control" placeholder="Business Name" id="business_name">
+                        <label for="business_name">{{ form.business_name.label() }}</label>
+                        <!-- <input type="text" class="form-control" placeholder="Business Name" id="business_name"> -->
+                        {{ form.business_name(class="form-control", placeholder="Business Name", id="business_name", autocomplete="off") }}
                     </div>
                     <div class="form-group">
-                        <label for="owner_name">Owner Name</label>
-                        <input type="text" class="form-control" placeholder="Owner Name" id="owner_name">
+                        <label for="owner_name">{{ form.owner_name.label() }}</label>
+                        <!-- <input type="text" class="form-control" placeholder="Owner Name" id="owner_name"> -->
+                        {{ form.owner_name(class="form-control", placeholder="Owner Name", id="owner_name", autocomplete="off") }}
                     </div>
                     <div class="form-group">
-                        <label for="owner_mail">Owner Email</label>
-                        <input type="email" class="form-control" placeholder="Owner Email" id="owner_mail">
+                        <label for="owner_mail">{{ form.owner_email.label() }}</label>
+                        <!-- <input type="email" class="form-control" placeholder="Owner Email" id="owner_mail"> -->
+                        {{ form.owner_email(class="form-control", placeholder="Owner Email", id="owner_mail", autocomplete="off") }}
                     </div>
                     <div class="form-group">
-                        <label for="owner_phone">Owner Phone no</label>
-                        <input type="tel" class="form-control" placeholder="Phone no" id="owner_phone" maxlength="10">
+                        <label for="owner_phone">{{ form.owner_phone.label() }}</label>
+                        <!-- <input type="tel" class="form-control" placeholder="Phone no" id="owner_phone" maxlength="10"> -->
+                        {{ form.owner_phone(class="form-control", placeholder="Phone no", id="owner_phone", maxlength="10", autocomplete="off") }}
                     </div>
                     <div class="form-group">
-                        <label for="uPassword">Password</label>
-                        <input type="password" class="form-control" placeholder="Password" id="uPassword">
+                        <label for="uPassword">{{ form.password.label() }}</label>
+                        <!-- <input type="password" class="form-control" placeholder="Password" id="uPassword"> -->
+                        {{ form.password(class="form-control", placeholder="Password", id="uPassword") }}
                     </div>
                     <div class="form-group">
-                        <label for="confirm_password">Confirm Password</label>
-                        <input type="password" class="form-control" placeholder="Confirm password" id="confirm_password">
+                        <label for="confirm_password">{{ form.confirm_password.label() }}</label>
+                        <!-- <input type="password" class="form-control" placeholder="Confirm password" id="confirm_password"> -->
+                        {{ form.confirm_password(class="form-control", placeholder="Confirm password", id="confirm_password") }}
                     </div>
-                    <button type="submit" class="btn btn-black button-fix">Register</button>
+                    <!-- <button type="submit" class="btn btn-black">Register</button> -->
+                    {{ form.register(class="btn btn-black") }}
                     <a href="{{ url_for('login_page') }}">
-                        <button type="button" class="btn btn-secondary button-fix">Login</button>
+                        <button type="button" class="btn btn-secondary">Login</button>
                     </a>
                 </form>
             </div>
