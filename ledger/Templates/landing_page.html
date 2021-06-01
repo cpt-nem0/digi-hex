@@ -21,14 +21,19 @@
             <div class="row vh-md-100">
                 <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
                     <h1 class="heading-black text-capitalize">Digital Ledger</h1>
-                    <p class="lead py-3">A tamper-free blockchain based Digital Ledger, track transaction with your clients.
+                    <p class="lead py-3">A tamper-free blockchain based Digital Ledger, which helps you track transaction with your clients.
                     </p>
-                    <button class="btn btn-primary d-inline-flex flex-row align-items-center">
-                        Login
-                    </button>
-                    <button class="btn btn-primary d-inline-flex flex-row align-items-center">
-                        Register
-                    </button>
+                    <a href="{{ url_for('login_page') }}">
+                        <button class="btn btn-primary d-inline-flex flex-row align-items-center">
+                            Login
+                        </button>
+                    </a>
+
+                    <a href="{{ url_for('register_page') }}">
+                        <button class="btn btn-primary d-inline-flex flex-row align-items-center">
+                            Register
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
