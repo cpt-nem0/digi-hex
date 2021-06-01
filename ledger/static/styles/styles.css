@@ -179,3 +179,7 @@ body {
 .form input:valid+.label-name::after {
     transform: translateX(0%);
 }
+
+a {
+    text-decoration: none !important;
+}
