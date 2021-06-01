@@ -1,5 +1,5 @@
 .env
 *.vscode
-/venv
+*.venv
 test.py
 /ledger/__pycache__
