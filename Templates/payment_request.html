@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+
+
+<div class="bt">
+    <button type="button" class="btn btn-outline-dark">
+        < Back</button>
+</div>
+
+<form>
+    <div class="center-conti">
+        <h4>Payment Request</h4>
+
+        <label for="clientList">Select Client</label>
+        <select class="custom-select tc" name="clientList">
+            <option selected>select the client</option>
+            <option>client1</option>
+            <option>client2</option>
+            <option>client3</option>
+            <option>client4</option>
+        </select><br>
+
+        <label for="paymentAmt">Amount</label>
+        <input class="form-control" type="number" placeholder="Rs. 0" min="0" max="999999999" name="paymentAmt"
+            required><br>
+
+        <label for="remarks">Remarks</label>
+        <input class="form-control" type="text" placeholder="enter remarks" name="remarks"><br><br>
+
+        <button type="submit" class="btn btn-outline-primary">Request Payment via E-mail</button>
+    </div>
+</form>
+
+{% endblock %}

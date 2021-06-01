@@ -1,0 +1,188 @@
+body {
+    font-family: "Lato", sans-serif;
+    background-color: rgb(223, 231, 240);
+}
+
+
+
+.main-head{
+    height: 150px;
+    background: #FFF;
+   
+}
+
+.sidenav {
+    height: 100%;
+    background-color: #000;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+
+.main {
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+}
+
+@media screen and (max-width: 450px) {
+    .login-form{
+        margin-top: 10%;
+    }
+
+    .register-form{
+        margin-top: 10%;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .main{
+        margin-left: 40%; 
+    }
+
+    .sidenav{
+        width: 40%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
+
+    .login-form{
+        margin-top: 80%;
+    }
+
+    .register-form{
+        margin-top: 20%;
+    }
+}
+
+
+.login-main-text{
+    margin-top: 20%;
+    padding: 60px;
+    color: #fff;
+}
+
+.login-main-text h2{
+    font-weight: 300;
+}
+
+.btn-black{
+    background-color: #000 !important;
+    color: #fff;
+}
+
+.bg-black {
+    background-color: black;
+}
+
+#card-grp {
+    padding: 20px 20px;
+    height: auto;
+    width: auto;
+    /* background-color: lightgray; */
+}
+
+.row {
+    margin: 20px 20px;
+}
+
+.tab {
+    padding-top: 20px;
+}
+
+.bt {
+    padding: 10px 10px;
+}
+
+#profileCard {
+    background-image: linear-gradient(#141e30, #243b55);
+    color: whitesmoke;
+    margin-top: 20px;
+}
+
+#cardHead {
+    margin-top: 10px;
+}
+
+#userInfo {
+    margin-left: 20px;
+}
+
+.center-conti{
+    font-family: sans-serif;
+    height: 500px;
+    width: 700px;
+    margin: 25px auto auto auto;
+    padding: 30px;
+    background-color: white;
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.center-conti h4{
+    margin-bottom: 50px;
+}
+
+.form {
+    width: 50%;
+    position: relative;
+    height: 50px; 
+    overflow: hidden;
+}
+
+.form input {
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+    border: none;
+    outline: none;
+}
+
+.form label {
+    position: absolute;
+    bottom: 0px;
+    left: 0%;
+    height: 100%;
+    width: 102%;
+    pointer-events: none;
+    border-bottom: 1px solid black;
+}
+
+.form label::after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    bottom: -2px;
+    height: 100%;
+    width: 100%;
+    border-bottom: 3px solid rgb(36, 166, 226);
+    transform: translateX(-100%);
+    transition: 0.3s ease;
+} 
+
+.content-name {
+    position: absolute;
+    bottom: 5px;
+    left: 0px;
+    transition: all 0.3s ease;
+}
+
+.form input:focus + .label-name .content-name, 
+.form input:valid +.label-name .content-name{
+    transform: translateY(-95%);
+    font-size: 14px;
+    color: rgb(36, 166, 226);
+}
+
+.form input:focus + .label-name::after, 
+.form input:valid + .label-name::after {
+    transform: translateX(0%);
+}

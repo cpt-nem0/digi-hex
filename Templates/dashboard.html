@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="{{ url_for('static', filename='img/banner.png') }}" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{{ url_for('static', filename='img/nextGenration.png') }}" alt="Second slide">
+    </div>
+  </div>
+</div>
+
+
+<!-- card section -->
+<div id="card-grp">
+  <section>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Add Clients</h5>
+              <p class="card-text">Add all your clients who are connected to your business.</p>
+              <a href="{{ url_for('add_clients') }}" id="addClient" class="btn btn-primary">Add</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Business Profile</h5>
+              <p class="card-text">View your business profile and details.</p>
+              <a href="{{ url_for('user_profile') }}" id="viewProfile" class="btn btn-primary">View</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">View Clients</h5>
+              <p class="card-text">View all your clients and transactions with them if any !</p>
+              <a href="{{ url_for('view_clients') }}" id="viewClients" class="btn btn-primary">View</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Request New Payment</h5>
+              <p class="card-text">Request new payment from your client!</p>
+              <a href="{{ url_for('payment_request') }}" id="newTransaction" class="btn btn-primary">Request</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% endblock %}

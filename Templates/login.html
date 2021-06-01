@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <!-- <link href="styles.css" rel="stylesheet" id="bootstrap-css"> -->
+    <link href="{{ url_for('static', filename='styles/styles.css') }}" rel="stylesheet" id="bootstrap-css">
+    <!------ Include the above in your HEAD tag ---------->
+    <title>Login</title>
+</head>
+<body>
+
+    <div class="sidenav">
+    <div class="login-main-text">
+            <h1>Digital Ledger</h1>
+            <h2>Login Page</h2>
+            <p>Login or register from here to access.</p>
+        </div>
+    </div>
+    <div class="main">
+        <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="user_email">E-mail</label>
+                        <input type="text" class="form-control" placeholder="Email" id="user_email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_password">Password</label>
+                        <input type="password" class="form-control" placeholder="Password" id="user_password" required>
+                    </div>
+                    <button type="submit" class="btn btn-black">Login</button>
+                    <button type="submit" class="btn btn-secondary">Register</button>
+                </form>
+            </div>
+        </div>
+      </div>
+</body>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</html>
