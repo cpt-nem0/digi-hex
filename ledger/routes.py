@@ -1,9 +1,7 @@
-from flask import Flask, render_template
+from ledger import app
+from flask import render_template, redirect, url_for
 
-app = Flask(__name__)
 
-
-@app.route('/')
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
@@ -31,6 +29,3 @@ def view_clients():
 @app.route('/addclients')
 def add_clients():
     return render_template('add_clients.html')
-
-if __name__ == '__main__':
-    app.run(debug=True)
