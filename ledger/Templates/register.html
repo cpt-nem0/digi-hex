@@ -10,6 +10,7 @@
     <link href="{{ url_for('static', filename='styles/styles.css') }}" rel="stylesheet" id="bootstrap-css">
     <!------ Include the above in your HEAD tag ---------->
     <title>Register</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/d.png') }}" type="image/x-icon">
 </head>
 
 <body>
@@ -46,7 +47,7 @@
                     <div class="form-group">
                         <label for="owner_phone">{{ form.owner_phone.label() }}</label>
                         <!-- <input type="tel" class="form-control" placeholder="Phone no" id="owner_phone" maxlength="10"> -->
-                        {{ form.owner_phone(class="form-control", placeholder="Phone no", id="owner_phone", maxlength="10", autocomplete="off") }}
+                        {{ form.owner_phone(class="form-control", placeholder="Phone no", id="owner_phone", autocomplete="off") }}
                     </div>
                     <div class="form-group">
                         <label for="uPassword">{{ form.password.label() }}</label>
