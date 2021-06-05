@@ -6,17 +6,15 @@ Profile
 
 {% block content %}
 
-<form>
+<form method="post">
     <div class="center-conti">
         <h4>Payment Request</h4>
 
         <label for="clientList">Select Client</label>
         <select class="custom-select tc" name="clientList">
-            <option selected>select the client</option>
-            <option>client1</option>
-            <option>client2</option>
-            <option>client3</option>
-            <option>client4</option>
+            {% for client in clients %}
+            <option>{{client.clientEmail}}</option>
+            {% endfor %}
         </select><br>
 
         <label for="paymentAmt">Amount</label>
@@ -24,7 +22,7 @@ Profile
             required><br>
 
         <label for="remarks">Remarks</label>
-        <input class="form-control" type="text" placeholder="enter remarks" name="remarks"><br><br>
+        <input class="form-control" type="text" placeholder="enter remarks" name="remarks" autocomplete="off"><br><br>
 
         <button type="submit" class="btn btn-outline-primary">Request Payment via E-mail</button>
     </div>

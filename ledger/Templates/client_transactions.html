@@ -12,12 +12,7 @@
     <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
     <link href="{{ url_for('static', filename='styles/styles.css') }}" rel="stylesheet" id="bootstrap-css">
 
-    <title>
-
-        {% block title %}
-        {% endblock %}
-
-    </title>
+    <title>Transactions </title>
 
     <link rel="icon" href="{{ url_for('static', filename='img/d.png') }}" type="image/x-icon">
 </head>
@@ -58,10 +53,67 @@
         </a>
     </div>
 
-    {% block content %} 
-    {% endblock %}
-
-    <!-- Optional JavaScript -->
+<div class="tab">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Client name</th>
+                <th scope="col">Client Mobile</th>
+                <th scope="col">Client Email</th>
+                <th scope="col">No. of Transactions</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Harish</td>
+                <td>+91-9999999999</td>
+                <td>har@g.com</td>
+                <td>0</td>
+                <td>
+                    <button type="button" class="btn btn-outline-info">View Transactions</button>
+                    <button type="button" class="btn btn-danger">Remove</button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Amrish</td>
+                <td>+91-9999999999</td>
+                <td>ami@y.com</td>
+                <td>0</td>
+                <td>
+                    <button type="button" class="btn btn-outline-info">View Transactions</button>
+                    <button type="button" class="btn btn-danger">Remove</button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Vinay</td>
+                <td>+91-9999999999</td>
+                <td>vinay@g.com</td>
+                <td>0</td>
+                <td>
+                    <button type="button" class="btn btn-outline-info">View Transactions</button>
+                    <button type="button" class="btn btn-danger">Remove</button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>Punit</td>
+                <td>+91-9999999999</td>
+                <td>punit@g.com</td>
+                <td>0</td>
+                <td>
+                    <button type="button" class="btn btn-outline-info">View Transactions</button>
+                    <button type="button" class="btn btn-danger">Remove</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+ <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

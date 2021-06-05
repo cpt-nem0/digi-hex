@@ -9,11 +9,11 @@
 <div class="card" id="profileCard">
     <h3 class="text-center" id="cardHead">User Profile</h3>
     <section id="userInfo">
-        <p> Business Id: {{ user_data.b_id }} </p>
-        <p> Business Name: {{ user_data.b_name }} </p>
-        <p> Business Owner: {{ user_data.b_owner }} </p>
-        <p> Contact no.: +91-{{ user_data.b_mobile }}</p>
-        <p> Email: {{ user_data.b_email }}</p>
+        <p> <u>Business Id</u>: {{ user_data.b_id }} </p>
+        <p> <u>Business Name</u>: {{ user_data.b_name }} </p>
+        <p> <u>Business Owner</u>: {{ user_data.b_owner }} </p>
+        <p> <u>Contact no.</u>: +91-{{ user_data.b_mobile }}</p>
+        <p> <u>Email</u> {{ user_data.b_email }}</p>
     </section>
 </div>
 {% endblock %}

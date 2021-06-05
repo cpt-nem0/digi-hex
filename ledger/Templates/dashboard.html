@@ -12,9 +12,7 @@
     <link href="{{ url_for('static', filename='styles/styles.css') }}" rel="stylesheet" id="bootstrap-css">
 
     <title>
-
-        {% block title %} {% endblock %}
-
+       Dashboard
     </title>
 
     <link rel="icon" href="{{ url_for('static', filename='img/d.png') }}" type="image/x-icon">
@@ -33,6 +31,9 @@
                     <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
+            <span class="navbar-text" style="color: white; padding-right: 20px;">
+                <span style="color:lightslategray;">Logged in as: </span>{{ session['user'] }}
+            </span>
             <ul class="navbar-nav">
 
                 <li class="nav-item">
