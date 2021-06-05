@@ -5,17 +5,17 @@ from flask_login import UserMixin
 
 @login_manager.user_loader
 def load_user(user_id):
-    return businessSchema.objects(user_id=user_id)
+    return Businesses.objects(user_id=user_id)
 
 
-class pendingTransactionsSchema(db.Document):
+class pendingTransaction(db.Document):
     amount = db.IntField(sparse=True)
     clientEmail = db.StringField(sparse=True)
     remarks = db.StringField(sparse=True)
     b_email = db.StringField(sparse=True)
 
 
-class transactionSchema(db.EmbeddedDocument):
+class Transaction(db.EmbeddedDocument):
     amount = db.IntField()
     timeStamp = db.StringField(sparse=True)
     status = db.StringField(sparse=True)
@@ -24,22 +24,22 @@ class transactionSchema(db.EmbeddedDocument):
     _hash = db.StringField(sparse=True, unique=True)
 
 
-class clientSchema(db.EmbeddedDocument):
+class Clients(db.EmbeddedDocument):
     clientName = db.StringField(sparse=True)
     clientEmail = db.StringField(sparse=True)
     clientMobile = db.IntField(sparse=True)
     firstTransaction = db.IntField(sparse=True)
-    clientTransactions = db.ListField(db.EmbeddedDocumentField('transactionSchema'))
+    clientTransactions = db.ListField(db.EmbeddedDocumentField('Transaction'))
 
 
-class businessSchema(db.Document, UserMixin):
+class Businesses(db.Document, UserMixin):
     b_id = db.StringField(required=True, unique=True)
     b_name = db.StringField(required=True, unique=True)
     b_owner = db.StringField(required=True)
     b_email = db.StringField(required=True, unique=True)
     b_mobile = db.IntField(required=True, unique=True)
     b_password_hash = db.StringField(required=True)
-    clients = db.ListField(db.EmbeddedDocumentField('clientSchema'))
+    clients = db.ListField(db.EmbeddedDocumentField('Clients'))
 
     @property
     def b_password(self):
