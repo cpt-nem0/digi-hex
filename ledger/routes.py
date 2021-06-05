@@ -2,9 +2,9 @@ import uuid
 
 from ledger import app
 from ledger.schema import *
-from flask import render_template, redirect, url_for, session, request, flash, get_flashed_messages
+from flask import render_template, redirect, url_for, session, flash, request
 from flask_login import login_user
-from ledger.forms import RegistrationForm, LoginForm
+from ledger.forms import RegistrationForm, LoginForm, AddClientsForm
 
 
 @app.route('/')
@@ -23,7 +23,7 @@ def login_page():
     form = LoginForm()
 
     if form.validate_on_submit():
-        attempted_user = businessSchema.objects(b_email=form.user_email.data).first()
+        attempted_user = Businesses.objects(b_email=form.user_email.data).first()
         if attempted_user and attempted_user.check_password_correction(attempted_password=form.user_password.data):
             login_user(attempted_user)
             session['user'] = attempted_user.b_owner
@@ -39,10 +39,10 @@ def login_page():
 def register_page():
     form = RegistrationForm()
     
-    if request.method == 'POST' and form.validate_on_submit():
+    if form.validate_on_submit():
         
         # create user
-        newUser = businessSchema(
+        newUser = Businesses(
             b_id = uuid.uuid4().hex,
             b_name = form.business_name.data,
             b_owner = form.owner_name.data,
@@ -61,32 +61,52 @@ def register_page():
 
     return render_template('register.html', form=form)
 
-@app.route('/paymentrequest/')
-def payment_request():
-    if 'user' in session:
-        return render_template('payment_request.html')
-    
-    return render_template('landing_page.html')
-
 @app.route('/profile/')
 def user_profile():
     if 'user' in session:
-        user_data = businessSchema.objects(b_id=session['user_id']).first()
+        user_data = Businesses.objects(b_id=session['user_id']).first()
         return render_template('user_profile.html', user_data=user_data)
+    
+    return render_template('landing_page.html')
+@app.route('/paymentrequest/', methods=['POST', 'GET'])
+
+def payment_request():
+    if 'user' in session:
+        userData = Businesses.objects(b_id=session.get('user_id')).first()
+        clients = [client for client in userData.clients]
+        if request.method == 'POST':
+            print('SELECT: ', request.form.get('clientList'))
+            print('AMOUNT: ', request.form.get('paymentAmt'))
+            print('REMARKS: ', request.form.get('remarks'))
+        return render_template('payment_request.html', clients=clients)
     
     return render_template('landing_page.html')
 
 @app.route('/viewclients/')
 def view_clients():
     if 'user' in session:
-        return render_template('view_clients.html')
+        userData = Businesses.objects(b_id=session.get('user_id')).first()
+        clients = [client for client in userData.clients]
+        return render_template('view_clients.html', clients=clients)
 
     return render_template('landing_page.html')
 
-@app.route('/addclients/')
+@app.route('/addclients/', methods=['POST', 'GET'])
 def add_clients():
+    form = AddClientsForm()
     if 'user' in session:
-        return render_template('add_clients.html')
+        if form.validate_on_submit():
+            userData = Businesses.objects(b_id=session['user_id']).first()
+            clientInfo = Clients(
+                clientName=form.client_name.data,
+                clientEmail=form.client_email.data,
+                clientMobile=form.client_phone.data
+            )
+            userData.clients.append(clientInfo)
+            userData.save()
+            flash(f"{form.client_name.data} has been added to your clients")
+
+        return render_template('add_clients.html', form=form)
     
     return render_template('landing_page.html')
 
