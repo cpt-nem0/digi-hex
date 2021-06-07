@@ -23,12 +23,12 @@
             <tr>
                 <th scope="row">{{loop.index}}</th>
                 <td>{{client.clientName}}</td>
-                <td>{{client.clientMobile}}</td>
+                <td>+91-{{client.clientMobile}}</td>
                 <td>{{client.clientEmail}}</td>
-                <td>0</td>
+                <td>{{client.clientTransactions|length}}</td>
                 <td>
-                    <button type="button" class="btn btn-outline-info">View Transactions</button>
-                    <button type="button" class="btn btn-danger">Remove</button>
+                    <a href="{{ url_for('view_transactions', cPos=loop.index) }}"><button type="button" class="btn btn-outline-info">View Transactions</button></a>
+                    <a href="{{ url_for('remove_clients', clientMail=client.clientEmail)}}"><button type="button" class="btn btn-danger">Remove</button></a>
                 </td>
             </tr>
             {% endfor %}
