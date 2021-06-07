@@ -11,7 +11,6 @@ from flask import session
 from dotenv import load_dotenv
 
 load_dotenv()
-# message = MIMEMultipart()
 
 def send_mail(transaction_id, clientMail, amount, remarks):
 
@@ -61,4 +60,5 @@ def send_mail(transaction_id, clientMail, amount, remarks):
 
 
 def generateLink(link):
-    return 'https://digihex.herokuapp.com/'.join(link)
+    # return 'https://digihex.herokuapp.com/'.join(link)
+    return '127.0.0.1:5000'.join(link)
