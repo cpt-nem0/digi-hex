@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 load_dotenv()
 # message = MIMEMultipart()
 
-def send_mail(clientMail, amount, remarks):
+def send_mail(transaction_id, clientMail, amount, remarks):
 
     user = Businesses.objects(b_id=session['user_id']).first()
     cEmails = [x.clientEmail for x in user.clients]
@@ -22,7 +22,8 @@ def send_mail(clientMail, amount, remarks):
     message["to"] = clientMail
     message["subject"] = "Payment Request" 
     cName = user.clients[cEmails.index(clientMail)].clientName
-    link = generateLink(link='/confirmPayment/clientMail')
+    # link = generateLink(link=f'/confirmPayment/{transaction_id}')
+    link = transaction_id
     msg = f'''
     <!DOCTYPE html>
     <html lang="en">
