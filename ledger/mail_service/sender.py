@@ -21,7 +21,7 @@ def send_mail(transaction_id, clientMail, amount, remarks):
     message["to"] = clientMail
     message["subject"] = "Payment Request" 
     cName = user.clients[cEmails.index(clientMail)].clientName
-    link = generateLink(link=f'/confirmPayment/{transaction_id}')
+    link = 'http://127.0.0.1:5000/clientApproval/{}'.format(transaction_id)
     msg = f'''
     <!DOCTYPE html>
     <html lang="en">
@@ -57,8 +57,3 @@ def send_mail(transaction_id, clientMail, amount, remarks):
 
     except:
         print("message was not...")
-
-
-def generateLink(link):
-    # return 'https://digihex.herokuapp.com/'.join(link)
-    return '127.0.0.1:5000'.join(link)
