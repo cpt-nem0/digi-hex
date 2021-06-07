@@ -88,7 +88,7 @@ body {
 }
 
 .bt {
-    padding: 10px 10px;
+    padding: 20px 10px 0px 10px;
 }
 
 #profileCard {
@@ -182,4 +182,8 @@ body {
 
 a {
     text-decoration: none !important;
+}
+
+.txt-clr {
+    color: #f2b202;
 }
