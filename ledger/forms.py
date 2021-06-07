@@ -52,3 +52,8 @@ class AddClientsForm(FlaskForm):
     client_email = StringField(label="Client E-mail", validators=[Email(), DataRequired()])
     client_phone = StringField(label="Client Phone", validators=[Regexp('^[6-9]\d{9}$', message="Invalid Mobile Number"), DataRequired()])
     add_client = SubmitField(label="Add Client")
+
+
+class paymentRequest(FlaskForm):
+    accept = SubmitField(label="Accept Payment")
+    decline = SubmitField(label="Decline Payment")
