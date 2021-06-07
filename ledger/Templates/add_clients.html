@@ -7,20 +7,7 @@ Add Clients
 
 {% block content %}
 
-
 <form method="post">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    {% for category, message in messages %}
-    
-    <script>
-        let confirmation_msg = `{{message}}`;
-        window.alert(confirmation_msg);
-    </script>
-    
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
 
     {{ form.hidden_tag() }}
 
@@ -28,7 +15,6 @@ Add Clients
         <h4>Add client to your business</h4><br>
 
         <div class="form">
-            <!-- <input type="text" name="name" autocomplete="off" required> -->
             {{ form.client_name(id="inputStyle", autocomplete="off") }}
             <label for="name" class="label-name">
                 <span class="content-name">Client Name</span>
@@ -36,7 +22,6 @@ Add Clients
         </div>
         <br>
         <div class="form">
-            <!-- <input type="text" name="mail" autocomplete="off" required> -->
             {{ form.client_email(id="inputStyle", autocomplete="off") }}
             <label for="mail" class="label-name">
                 <span class="content-name">Client E-mail</span>
@@ -44,14 +29,12 @@ Add Clients
         </div>
         <br>
         <div class="form">
-            <!-- <input type="text" name="pno" autocomplete="off" required> -->
             {{ form.client_phone(id="inputStyle", autocomplete="off") }}
             <label for="pno" class="label-name">
                 <span class="content-name">Client Phone</span>
             </label>
         </div>
         <br><br>
-        <!-- <button type="submit" class="btn btn-outline-primary">Add Client</button> -->
         {{ form.add_client(class="btn btn-outline-primary") }}
     </div>
 </form>
