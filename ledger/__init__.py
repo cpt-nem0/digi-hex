@@ -11,7 +11,7 @@ app = Flask(__name__)
 load_dotenv()
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-app.config['MONGODB_HOST'] = os.getenv('MONGO_URI')
+app.config['MONGODB_HOST'] = os.getenv('MONGODB_URI')
 app.config['MONGODB_CONNECT'] = False
 
 try: 
