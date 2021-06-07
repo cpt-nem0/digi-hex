@@ -9,6 +9,7 @@ def load_user(user_id):
 
 
 class pendingTransaction(db.Document):
+    transaction_id = db.StringField(sparse=True, unique=True)
     amount = db.IntField(sparse=True)
     clientEmail = db.StringField(sparse=True)
     remarks = db.StringField(sparse=True)
@@ -16,6 +17,7 @@ class pendingTransaction(db.Document):
 
 
 class Transaction(db.EmbeddedDocument):
+    transaction_id = db.StringField(sparse=True, unique=True)
     amount = db.IntField()
     timeStamp = db.StringField(sparse=True)
     status = db.StringField(sparse=True)
@@ -26,8 +28,8 @@ class Transaction(db.EmbeddedDocument):
 
 class Clients(db.EmbeddedDocument):
     clientName = db.StringField(sparse=True)
-    clientEmail = db.StringField(sparse=True)
-    clientMobile = db.IntField(sparse=True)
+    clientEmail = db.StringField(sparse=True, unique=True)
+    clientMobile = db.IntField(sparse=True, unique=True)
     firstTransaction = db.IntField(sparse=True)
     clientTransactions = db.ListField(db.EmbeddedDocumentField('Transaction'))
 
