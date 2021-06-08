@@ -11,6 +11,7 @@ from flask import session
 from dotenv import load_dotenv
 
 load_dotenv()
+# message = MIMEMultipart()
 
 def send_mail(transaction_id, clientMail, amount, remarks):
 
@@ -21,7 +22,7 @@ def send_mail(transaction_id, clientMail, amount, remarks):
     message["to"] = clientMail
     message["subject"] = "Payment Request" 
     cName = user.clients[cEmails.index(clientMail)].clientName
-    link = 'http://127.0.0.1:5000/clientApproval/{}'.format(transaction_id)
+    link = 'https://digihex.herokuapp.com/clientApproval/{}'.format(transaction_id)
     msg = f'''
     <!DOCTYPE html>
     <html lang="en">
