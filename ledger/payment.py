@@ -9,8 +9,12 @@ from flask import session
 def precessPayment(tId, status):
     processingTransaction = pendingTransaction.objects(transaction_id=tId).first()
     client = Businesses.objects(b_id=session['user_id']).first()
-    emails = [c.clientEmail for c in client.clients]
-    index = emails.index(processingTransaction.clientEmail)
+    index = 0
+    for i in client.clients:
+        if i.clientEmail == processingTransaction.clientEmail:
+            break
+        index += 1
+    
     transaction = client.clients[index].clientTransactions
     timestamp = datetime.datetime.now()
     if client.clients[index].firstTransaction == 1:
@@ -22,13 +26,16 @@ def precessPayment(tId, status):
             status=status
         )
     else:
+        print()
+        print("INDEX: ", index)
+        print()
         hashes = blockchain.addNewTransactionBlock(
             firstTransaction=client.clients[index].firstTransaction, 
             amount=processingTransaction.amount, 
             remarks=processingTransaction.remarks, 
             timeStamp=timestamp,
             status=status,
-            previousHash=transaction[index-1]._hash
+            previousHash=transaction[-1]._hash
         )
     currentTransaction = Transaction(
         transaction_id=tId,
