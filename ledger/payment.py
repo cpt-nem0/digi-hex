@@ -26,9 +26,6 @@ def precessPayment(tId, status):
             status=status
         )
     else:
-        print()
-        print("INDEX: ", index)
-        print()
         hashes = blockchain.addNewTransactionBlock(
             firstTransaction=client.clients[index].firstTransaction, 
             amount=processingTransaction.amount, 
