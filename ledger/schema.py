@@ -28,8 +28,8 @@ class Transaction(db.EmbeddedDocument):
 
 class Clients(db.EmbeddedDocument):
     clientName = db.StringField(sparse=True)
-    clientEmail = db.StringField(sparse=True, unique=True)
-    clientMobile = db.IntField(sparse=True, unique=True)
+    clientEmail = db.StringField(sparse=True)
+    clientMobile = db.IntField(sparse=True)
     firstTransaction = db.IntField(sparse=True)
     clientTransactions = db.ListField(db.EmbeddedDocumentField('Transaction'))
 
