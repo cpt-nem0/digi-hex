@@ -58,3 +58,5 @@ def send_mail(transaction_id, clientMail, amount, remarks):
 
     except:
         print("message was not...")
+
+    # del clientMail
