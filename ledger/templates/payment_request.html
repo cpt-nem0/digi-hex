@@ -7,24 +7,21 @@ Profile
 {% block content %}
 
 <form method="post">
+    {{ form.hidden_tag() }}
     <div class="center-conti">
         <h4>Payment Request</h4>
 
-        <label for="clientList">Select Client</label>
-        <select class="custom-select tc" name="clientList">
-            {% for client in clients %}
-            <option>{{client.clientEmail}}</option>
-            {% endfor %}
-        </select><br>
+        {{ form.emails.label }}
+        {{ form.emails(class="custom-select tc") }}<br>
 
-        <label for="paymentAmt">Amount</label>
-        <input class="form-control" type="number" placeholder="Rs. 0" min="0" max="999999999" name="paymentAmt"
-            required><br>
+        {{ form.amount.label }}
+        {{ form.amount(class="form-control", placeholder="Rs. 0") }} <br>
 
-        <label for="remarks">Remarks</label>
-        <input class="form-control" type="text" placeholder="enter remarks" name="remarks" autocomplete="off"><br><br>
+        {{ form.remarks.label }}
+        {{ form.remarks(class="form-control", placeholder="enter remarks", autocomplete="off") }} <br><br>
 
-        <button type="submit" class="btn btn-outline-primary">Request Payment via E-mail</button>
+        {{ form.sent(class="btn btn-outline-primary") }}
+
     </div>
 </form>
 

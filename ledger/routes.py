@@ -1,5 +1,4 @@
 import uuid
-import datetime
 
 from ledger import app
 from ledger.schema import *
@@ -9,7 +8,7 @@ from ledger.mail_service.sender import send_mail
 
 from flask import render_template, redirect, url_for, session, flash, request
 from flask_login import login_user
-from ledger.forms import RegistrationForm, LoginForm, AddClientsForm, paymentRequest
+from ledger.forms import *
 
 
 @app.route('/')
@@ -76,18 +75,18 @@ def user_profile():
 @app.route('/paymentrequest/', methods=['POST', 'GET'])
 def payment_request():
     if 'user' in session:
+        form = paymentForm()
         userData = Businesses.objects(b_id=session.get('user_id')).first()
         clients = [client for client in userData.clients]
-        if request.method == 'POST':
+        emailList = [(i, client.clientEmail) for i, client in enumerate(clients)]
+        form.emails.choices = emailList
+        
+        if form.validate_on_submit():
             transaction_id = uuid.uuid4().hex
-            clientMail = request.form.get('clientList')
-            amount = request.form.get('paymentAmt')
-            remarks = request.form.get('remarks')
-            try:
-                send_mail(transaction_id, clientMail, amount, remarks)
-                flash("Mail was sent to the client.", category='success')
-            except :
-                flash("Mail was NOT sent!!", category='danger')
+            clientMailIndex = form.emails.data
+            amount = form.amount.data
+            remarks = form.remarks.data
+            clientMail = emailList[int(clientMailIndex)][1]
             
             paymentReq = pendingTransaction(
                 transaction_id=transaction_id,
@@ -97,7 +96,17 @@ def payment_request():
                 b_email=userData.b_email
             )
             paymentReq.save()
-        return render_template('payment_request.html', clients=clients)
+
+            try:
+                send_mail(transaction_id, clientMail, amount, remarks)
+                flash("Mail was sent to the client.", category='success')
+            except Exception as e:
+                print(e)
+                # delete the pending payment if mail is not sent
+                processingTransaction = pendingTransaction.objects(transaction_id=transaction_id).first()
+                processingTransaction.delete()
+                flash("Mail was NOT sent!!", category='danger')
+        return render_template('payment_request.html', form=form)
     
     return render_template('landing_page.html')
 

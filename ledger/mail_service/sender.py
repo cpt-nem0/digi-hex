@@ -11,7 +11,6 @@ from flask import session
 from dotenv import load_dotenv
 
 load_dotenv()
-# message = MIMEMultipart()
 
 def send_mail(transaction_id, clientMail, amount, remarks):
 
@@ -23,7 +22,7 @@ def send_mail(transaction_id, clientMail, amount, remarks):
     message["subject"] = "Payment Request" 
     cName = user.clients[cEmails.index(clientMail)].clientName
     link = 'https://digihex.herokuapp.com/clientApproval/{}'.format(transaction_id)
-    msg = f'''
+    msg_body = f'''
     <!DOCTYPE html>
     <html lang="en">
 
@@ -46,17 +45,13 @@ def send_mail(transaction_id, clientMail, amount, remarks):
 
     </html>
     '''
-    message.attach(MIMEText(msg, 'html'))
+    message.attach(MIMEText(msg_body, 'html'))
+       
+    with smtplib.SMTP(host="smtp.gmail.com", port=587) as smtp:
+        smtp.ehlo()
+        smtp.starttls()
+        smtp.login("{}".format(os.getenv('TEST_EMAIL')), "{}".format(os.getenv('TEST_EMAIL_PASSWORD')))
+        smtp.send_message(message)
+        print("message sent successfully...")
 
-    try:
-        with smtplib.SMTP(host="smtp.gmail.com", port=587) as smtp:
-            smtp.ehlo()
-            smtp.starttls()
-            smtp.login("{}".format(os.getenv('TEST_EMAIL')), "{}".format(os.getenv('TEST_EMAIL_PASSWORD')))
-            smtp.send_message(message)
-            print("message sent successfully...")
-
-    except:
-        print("message was not...")
-
-    # del clientMail
+    del message['to']

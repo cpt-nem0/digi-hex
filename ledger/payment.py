@@ -3,12 +3,10 @@ import datetime
 from ledger.schema import *
 from ledger.blockchain import blockchain
 
-from flask import session
-
 
 def precessPayment(tId, status):
     processingTransaction = pendingTransaction.objects(transaction_id=tId).first()
-    client = Businesses.objects(b_id=session['user_id']).first()
+    client = Businesses.objects(b_email=processingTransaction.b_email).first()
     index = 0
     for i in client.clients:
         if i.clientEmail == processingTransaction.clientEmail:

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import *
 from wtforms.validators import Length, EqualTo, Email, DataRequired, Regexp, ValidationError
 from ledger.schema import Businesses
 from flask import session
@@ -57,3 +57,10 @@ class AddClientsForm(FlaskForm):
 class paymentRequest(FlaskForm):
     accept = SubmitField(label="Accept Payment")
     decline = SubmitField(label="Decline Payment")
+
+
+class paymentForm(FlaskForm):
+    emails = SelectField(label='Select Client', choices=[])
+    amount = IntegerField(label='Amount')
+    remarks = StringField(label='Remarks')
+    sent = SubmitField(label='Request Payment via Email')
